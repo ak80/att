@@ -15,12 +15,12 @@ public class CollectionTools {
     return list.get(random.nextInt(list.size()));
   }
 
-  public static <T> T any(T ... array) {
+  public static <T> T any(T... array) {
     return array[random.nextInt(array.length)];
   }
 
   public static <T> T anyExcept(List<T> list, Collection<T> exceptionCollection) {
-    return any(filterList(list,item -> !exceptionCollection.contains(item)));
+    return any(filterList(list, item -> !exceptionCollection.contains(item)));
   }
 
   public static <T> List<T> filterList(List<T> list, Predicate<T> predicate) {
@@ -29,11 +29,11 @@ public class CollectionTools {
         .collect(Collectors.toList());
   }
 
-  public static <T> List<T> listOf(T ... array) {
+  public static <T> List<T> listOf(T... array) {
     return Arrays.asList(array);
   }
 
-  public static <T> Set<T> setOf(T ... array) {
+  public static <T> Set<T> setOf(T... array) {
     return new HashSet<T>(listOf(array));
   }
 

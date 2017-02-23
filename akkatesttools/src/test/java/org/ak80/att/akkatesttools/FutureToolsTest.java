@@ -1,13 +1,10 @@
 package org.ak80.att.akkatesttools;
 
-import akka.actor.ActorPath;
 import akka.actor.ActorRef;
 import akka.actor.Props;
-import akka.actor.ScalaActorRef;
 import org.hamcrest.core.Is;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.internal.runners.statements.ExpectException;
 import org.junit.rules.ExpectedException;
 
 import java.util.concurrent.CompletableFuture;
@@ -43,7 +40,7 @@ public class FutureToolsTest extends AkkaTest {
   public void ask_with_exception_then_runtime_exception() {
     // Given
     ActorRef actorRef = spy(system.actorOf(Props.create(EchoActor.class)));
-    doThrow(new IllegalStateException("failed")).when(actorRef).tell(eq("message"),any());
+    doThrow(new IllegalStateException("failed")).when(actorRef).tell(eq("message"), any());
 
     // Expect
     expectedException.expect(RuntimeException.class);

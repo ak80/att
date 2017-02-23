@@ -20,7 +20,7 @@ public class ValueTools {
   }
 
   public static String $Name() {
-    return "Name_"+ $Integer();
+    return "Name_" + $Integer();
   }
 
 }

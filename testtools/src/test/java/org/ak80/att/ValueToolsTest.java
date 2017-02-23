@@ -2,13 +2,11 @@ package org.ak80.att;
 
 import org.junit.Test;
 
-import static org.ak80.att.ValueTools.$Id;
-import static org.ak80.att.ValueTools.$Integer;
-import static org.ak80.att.ValueTools.$Name;
+import static org.ak80.att.ValueTools.*;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 
 public class ValueToolsTest {
@@ -19,7 +17,7 @@ public class ValueToolsTest {
     Integer integer = $Integer();
 
     // When Then
-    assertThat($Integer(),is(integer+1));
+    assertThat($Integer(), is(integer + 1));
   }
 
   @Test
@@ -28,7 +26,7 @@ public class ValueToolsTest {
     Integer integer = $Integer();
 
     // When Then
-    assertThat($Id(),is(integer+1));
+    assertThat($Id(), is(integer + 1));
   }
 
   @Test
@@ -37,12 +35,12 @@ public class ValueToolsTest {
     Integer integer = $Integer();
 
     // When Then
-    assertThat($Name(),is("Name_"+(integer+1)));
+    assertThat($Name(), is("Name_" + (integer + 1)));
   }
 
   @Test
   public void dummyCreateInstanceForLineCoverage() {
-    assertThat(new ValueTools(),is(not(nullValue())));
+    assertThat(new ValueTools(), is(not(nullValue())));
   }
 
 }

@@ -1,7 +1,5 @@
 package org.ak80.att.akkatesttools;
 
-import akka.actor.ActorPath;
-import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.testkit.JavaTestKit;
 import org.junit.AfterClass;

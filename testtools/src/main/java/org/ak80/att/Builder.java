@@ -7,6 +7,7 @@ public interface Builder<T> {
 
   /**
    * Builds instance with values from builder
+   *
    * @param <T> the type of the instance
    * @return the instance
    */
