@@ -19,6 +19,13 @@ import static scala.compat.java8.FutureConverters.toJava;
 @SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 public class FutureTools {
 
+  /**
+   * Send message and wait for result
+   * @param message the message to send
+   * @param actorRef the actor to send message to
+   * @param <T> the type of the reply
+   * @return the reply
+   */
   public static <T> T ask(Object message, ActorRef actorRef) {
     try {
       return (T) askFuture(message, actorRef).get();
@@ -27,6 +34,13 @@ public class FutureTools {
     }
   }
 
+  /**
+   * Send message and get future for result
+   * @param message the message to send
+   * @param actorRef the actor to send message to
+   * @param <T> the type of the reply
+   * @return the future
+   */
   public static <T> CompletableFuture<T> askFuture(Object message, ActorRef actorRef) {
     Future sFuture = akka.pattern.Patterns.ask(actorRef, message, 1000);
     CompletionStage<T> cs = toJava(sFuture);
@@ -35,11 +49,6 @@ public class FutureTools {
 
   public static <T> T getFail(CompletableFuture future) throws InterruptedException, java.util.concurrent.ExecutionException {
     return (T) future.handle((success, fail) -> fail).get();
-  }
-
-  @Test
-  public void dummyCreateInstanceForLineCoverage() {
-    assertThat(new FutureTools(),is(not(nullValue())));
   }
 
 }

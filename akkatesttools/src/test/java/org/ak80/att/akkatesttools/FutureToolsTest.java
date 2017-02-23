@@ -4,6 +4,7 @@ import akka.actor.ActorPath;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.ScalaActorRef;
+import org.hamcrest.core.Is;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.internal.runners.statements.ExpectException;
@@ -14,6 +15,8 @@ import java.util.concurrent.CompletableFuture;
 import static org.ak80.att.akkatesttools.FutureTools.askFuture;
 import static org.ak80.att.akkatesttools.FutureTools.getFail;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -76,5 +79,11 @@ public class FutureToolsTest extends AkkaTest {
     Exception failure = getFail(future);
     assertThat(failure.getMessage(), is(message));
   }
+
+  @Test
+  public void dummyCreateInstanceForLineCoverage() {
+    assertThat(new FutureTools(), Is.is(not(nullValue())));
+  }
+
 
 }
