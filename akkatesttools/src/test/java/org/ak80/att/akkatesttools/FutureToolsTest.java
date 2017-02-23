@@ -82,5 +82,4 @@ public class FutureToolsTest extends AkkaTest {
     assertThat(new FutureTools(), Is.is(not(nullValue())));
   }
 
-
 }
