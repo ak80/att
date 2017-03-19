@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.ak80.att.CollectionTools.*;
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -104,6 +105,18 @@ public class CollectionToolsTest {
 
     // Then
     assertThat(set, containsInAnyOrder(array));
+  }
+
+  @Test
+  public void listOf_with_count_creates_list_from_supplier() {
+    // Given
+    AtomicInteger integer = new AtomicInteger(0);
+
+    // When
+    List<Integer> list = listOf(5,() -> integer.getAndIncrement());
+
+    // Then
+    assertThat(list, contains(0, 1, 2, 3, 4));
   }
 
   @Test

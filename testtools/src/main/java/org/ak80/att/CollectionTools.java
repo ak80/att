@@ -2,6 +2,7 @@ package org.ak80.att;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +35,15 @@ public class CollectionTools {
   }
 
   public static <T> Set<T> setOf(T... array) {
-    return new HashSet<T>(listOf(array));
+    return new HashSet<>(listOf(array));
+  }
+
+  public static <T> List<T> listOf(int count, Supplier<T> supplier) {
+    List<T> list  = new ArrayList<T>();
+    for (int i=0; i<count; i++) {
+      list.add(supplier.get());
+    }
+    return list;
   }
 
 }
