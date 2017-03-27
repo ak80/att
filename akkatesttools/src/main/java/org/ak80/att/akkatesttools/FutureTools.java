@@ -1,12 +1,9 @@
 package org.ak80.att.akkatesttools;
 
 import akka.actor.ActorRef;
-import scala.concurrent.Future;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-
-import static scala.compat.java8.FutureConverters.toJava;
 
 /**
  * Tools for calling real actor with ask in integrated test scenario
@@ -39,9 +36,8 @@ public class FutureTools {
    * @return the future
    */
   public static <T> CompletableFuture<T> askFuture(Object message, ActorRef actorRef) {
-    Future sFuture = akka.pattern.Patterns.ask(actorRef, message, 1000);
-    CompletionStage<T> cs = toJava(sFuture);
-    return (CompletableFuture<T>) cs;
+    CompletionStage<Object> completionStage = akka.pattern.PatternsCS.ask(actorRef, message, 1000);
+    return (CompletableFuture<T>) completionStage;
   }
 
   public static <T> T getFail(CompletableFuture future) throws InterruptedException, java.util.concurrent.ExecutionException {
