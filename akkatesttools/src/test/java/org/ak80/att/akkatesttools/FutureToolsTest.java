@@ -9,9 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.concurrent.CompletableFuture;
 
-import static org.ak80.att.akkatesttools.FutureTools.askFuture;
-import static org.ak80.att.akkatesttools.FutureTools.askReply;
-import static org.ak80.att.akkatesttools.FutureTools.getFail;
+import static org.ak80.att.akkatesttools.FutureTools.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.IsNot.not;

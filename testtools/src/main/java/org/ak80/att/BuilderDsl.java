@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Utilities supporting the use of {@link Builder}s
+ * DSL supporting the use of {@link Builder}s
  */
-public class BuilderTools {
+public class BuilderDsl {
 
   public static <T> T a(Builder<T> builder) {
     return builder.build();
@@ -19,14 +19,26 @@ public class BuilderTools {
 
   public static <T> List<T> all(List<Builder<T>> builderList) {
     return builderList.stream()
-        .map(builder -> (T) builder.build())
+        .map(builder -> builder.build())
         .collect(Collectors.toList());
   }
 
   public static <T> List<T> all(Builder<T>... builders) {
     return Arrays.stream(builders)
-        .map(builder -> (T) builder.build())
+        .map(builder -> builder.build())
         .collect(Collectors.toList());
+  }
+
+  public static int few() {
+    return 3;
+  }
+
+  public static int several() {
+    return 10;
+  }
+
+  public static int many() {
+    return 100;
   }
 
 }

@@ -5,10 +5,12 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import static org.ak80.att.BuilderDsl.a;
+
 /**
- * Utilities supporting the use of collections
+ * DSL supporting the use of collections
  */
-public class CollectionTools {
+public class CollectionDsl {
 
   private final static Random random = new Random();
 
@@ -38,12 +40,32 @@ public class CollectionTools {
     return new HashSet<>(listOf(array));
   }
 
-  public static <T> List<T> listOf(int count, Supplier<T> supplier) {
-    List<T> list  = new ArrayList<T>();
-    for (int i=0; i<count; i++) {
+  public static <T> List<T> $listOf(int count, Builder<T> $builder) {
+    List<T> list = new ArrayList<>();
+    for (int i = 0; i < count; i++) {
+      list.add(a($builder));
+    }
+    return list;
+  }
+
+  public static <T> Set<T> $setOf(int count, Builder<T> $builder) {
+    Set<T> set = new HashSet<>();
+    for (int i = 0; i < count; i++) {
+      set.add(a($builder));
+    }
+    return set;
+  }
+
+  public static <T> List<T> listOfSupplied(int count, Supplier<T> supplier) {
+    List<T> list = new ArrayList<>();
+    for (int i = 0; i < count; i++) {
       list.add(supplier.get());
     }
     return list;
+  }
+
+  public static <T> Set<T> setOfSupplied(int count, Supplier<T> supplier) {
+    return new HashSet<>(listOfSupplied(count, supplier));
   }
 
 }

@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.ak80.att.CollectionTools.*;
+import static org.ak80.att.BuilderDsl.*;
+import static org.ak80.att.CollectionDsl.*;
+import static org.ak80.att.ValueTdf.$Integer;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.contains;
@@ -18,7 +20,7 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
 
-public class CollectionToolsTest {
+public class CollectionDslTest {
 
   @Test
   public void any_returns_a_random_item_from_list() {
@@ -107,21 +109,78 @@ public class CollectionToolsTest {
     assertThat(set, containsInAnyOrder(array));
   }
 
+
   @Test
-  public void listOf_with_count_creates_list_from_supplier() {
+  public void listOf_with_count_and_builder_creates_list() {
+    // Given
+    int start = an($Integer());
+
+    // When
+    List<Integer> list = $listOf(5, $Integer());
+
+    // Then
+    assertThat(list, contains(start + 1, start + 2, start + 3, start + 4, start + 5));
+  }
+
+  @Test
+  public void setOf_with_count_and_builder_creates_set() {
+    // Given
+    int start = an($Integer());
+
+    // When
+    Set<Integer> set = $setOf(5, $Integer());
+
+    // Then
+    assertThat(set, containsInAnyOrder(start + 1, start + 2, start + 3, start + 4, start + 5));
+  }
+
+  @Test
+  public void listOfSupplied_creates_list_from_supplier() {
     // Given
     AtomicInteger integer = new AtomicInteger(0);
 
     // When
-    List<Integer> list = listOf(5,() -> integer.getAndIncrement());
+    List<Integer> list = listOfSupplied(5, () -> integer.getAndIncrement());
 
     // Then
     assertThat(list, contains(0, 1, 2, 3, 4));
   }
 
   @Test
+  public void setOfSupplied_creates_lset_from_supplier() {
+    // Given
+    AtomicInteger integer = new AtomicInteger(0);
+
+    // When
+    Set<Integer> set = setOfSupplied(5, () -> integer.getAndIncrement());
+
+    // Then
+    assertThat(set, contains(0, 1, 2, 3, 4));
+  }
+
+  @Test
+  public void few_return_few() {
+    // Then
+    assertThat(few(), is(3));
+  }
+
+
+  @Test
+  public void several_return_several() {
+    // Then
+    assertThat(several(), is(10));
+  }
+
+
+  @Test
+  public void many_return_many() {
+    // Then
+    assertThat(many(), is(100));
+  }
+
+  @Test
   public void dummyCreateInstanceForLineCoverage() {
-    assertThat(new CollectionTools(), is(not(nullValue())));
+    assertThat(new CollectionDsl(), is(not(nullValue())));
   }
 
 }

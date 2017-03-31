@@ -51,7 +51,7 @@ public class FutureTools {
    */
   public static <T> T askReply(Object message, ActorRef actorRef) {
     try {
-      return (T) askFuture(message,actorRef).get();
+      return (T) askFuture(message, actorRef).get();
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     } catch (ExecutionException e) {
