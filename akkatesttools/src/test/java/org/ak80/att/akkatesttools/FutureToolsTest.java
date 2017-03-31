@@ -10,6 +10,7 @@ import org.junit.rules.ExpectedException;
 import java.util.concurrent.CompletableFuture;
 
 import static org.ak80.att.akkatesttools.FutureTools.askFuture;
+import static org.ak80.att.akkatesttools.FutureTools.askReply;
 import static org.ak80.att.akkatesttools.FutureTools.getFail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -61,6 +62,19 @@ public class FutureToolsTest extends AkkaTest {
 
     // Then
     assertThat(future.get(), is(message));
+  }
+
+  @Test
+  public void ask_reply_from_actor_then_has_reply() throws Exception {
+    // Given
+    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
+    String message = "message";
+
+    // When
+    String replyMessage = askReply(message, actorRef);
+
+    // Then
+    assertThat(replyMessage, is(message));
   }
 
   @Test
