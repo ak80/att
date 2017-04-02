@@ -11,8 +11,8 @@ public class LogAssertTest extends AkkaTest {
   @Test
   public void assertLogInfo_then_send_message_and_assert() {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
-    LogAssert logAssert = new LogAssert(system);
+    ActorRef actorRef = actorSystem.actorOf(Props.create(EchoActor.class));
+    LogAssert logAssert = new LogAssert(actorSystem);
     String message = "message";
 
     // When
@@ -25,8 +25,8 @@ public class LogAssertTest extends AkkaTest {
   @Test
   public void assertException_then_send_message_and_assert() {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
-    LogAssert logAssert = new LogAssert(system);
+    ActorRef actorRef = actorSystem.actorOf(Props.create(EchoActor.class));
+    LogAssert logAssert = new LogAssert(actorSystem);
 
     // When
     logAssert.whenTell(actorRef, Kill.getInstance());

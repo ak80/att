@@ -25,7 +25,7 @@ public class FutureToolsTest extends AkkaTest {
   @Test
   public void ask_reply_from_echo_actor_then_reply_is_message() {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
+    ActorRef actorRef = actorSystem.actorOf(Props.create(EchoActor.class));
     String message = "message";
 
     // When
@@ -38,7 +38,7 @@ public class FutureToolsTest extends AkkaTest {
   @Test
   public void ask_with_exception_then_runtime_exception() {
     // Given
-    ActorRef actorRef = spy(system.actorOf(Props.create(EchoActor.class)));
+    ActorRef actorRef = spy(actorSystem.actorOf(Props.create(EchoActor.class)));
     doThrow(new IllegalStateException("failed")).when(actorRef).tell(eq("message"), any());
 
     // Expect
@@ -52,7 +52,7 @@ public class FutureToolsTest extends AkkaTest {
   @Test
   public void ask_from_actor_then_future_has_reply() throws Exception {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
+    ActorRef actorRef = actorSystem.actorOf(Props.create(EchoActor.class));
     String message = "message";
 
     // When
@@ -65,7 +65,7 @@ public class FutureToolsTest extends AkkaTest {
   @Test
   public void ask_reply_from_actor_then_has_reply() throws Exception {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(EchoActor.class));
+    ActorRef actorRef = actorSystem.actorOf(Props.create(EchoActor.class));
     String message = "message";
 
     // When
@@ -78,7 +78,7 @@ public class FutureToolsTest extends AkkaTest {
   @Test
   public void get_fail_from_failed_ask_then_has_exception() throws Exception {
     // Given
-    ActorRef actorRef = system.actorOf(Props.create(ExceptionActor.class));
+    ActorRef actorRef = actorSystem.actorOf(Props.create(ExceptionActor.class));
     String message = "message";
 
     // When

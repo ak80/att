@@ -14,7 +14,7 @@ public class ExceptionActorTest extends AkkaTest {
   @Test
   public void receive_any_Message_return_to_sender() {
     // Given
-    TestActorRef<ExceptionActor> actorRef = TestActorRef.create(system, Props.create(ExceptionActor.class));
+    TestActorRef<ExceptionActor> actorRef = TestActorRef.create(actorSystem, Props.create(ExceptionActor.class));
     String message = "message";
 
     // Expect

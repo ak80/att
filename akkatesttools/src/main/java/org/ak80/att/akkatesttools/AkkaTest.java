@@ -10,17 +10,17 @@ import org.junit.BeforeClass;
  */
 public class AkkaTest {
 
-  protected static ActorSystem system;
+  protected static ActorSystem actorSystem;
 
   @BeforeClass
-  public static void setUp() {
-    system = ActorSystem.create();
+  public static void createActorSystem() {
+    actorSystem = ActorSystem.create();
   }
 
   @AfterClass
-  public static void tearDown() {
-    JavaTestKit.shutdownActorSystem(system);
-    system = null;
+  public static void shutdownActorSystem() {
+    JavaTestKit.shutdownActorSystem(actorSystem);
+    actorSystem = null;
   }
 
 }
