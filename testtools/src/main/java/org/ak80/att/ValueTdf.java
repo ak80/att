@@ -25,4 +25,8 @@ public class ValueTdf {
     return () -> "Name_" + an($Integer());
   }
 
+  public static Builder<String> $String() {
+    return () -> "String_" + an($Integer());
+  }
+
 }

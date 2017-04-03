@@ -41,6 +41,15 @@ public class ValueTdfTest {
   }
 
   @Test
+  public void string_get_incrementsFromInteger() {
+    // Given
+    Integer integer = an($Integer());
+
+    // When Then
+    assertThat(an($String()), is("String_" + (integer + 1)));
+  }
+
+  @Test
   public void dummyCreateInstanceForLineCoverage() {
     assertThat(new ValueTdf(), is(not(nullValue())));
   }

@@ -7,7 +7,7 @@
     <groupId>org.ak80.att</groupId>
     <artifactId>ak80-test-tools</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.0</version>
     <modules>
         <module>akkatesttools</module>
         <module>testtools</module>
