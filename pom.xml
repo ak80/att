@@ -7,7 +7,7 @@
     <groupId>org.ak80.att</groupId>
     <artifactId>ak80-test-tools</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2.0-SNAPSHOT</version>
     <modules>
         <module>akkatesttools</module>
         <module>testtools</module>
@@ -22,8 +22,7 @@
     </properties>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>ak80 test tools support unit testing
-    </description>
+    <description>ak80 test tools support unit testing</description>
     <url>https://github.com/ak80/att</url>
 
     <licenses>
@@ -46,7 +45,7 @@
         <connection>scm:git:git@github.com:ak80/att</connection>
         <developerConnection>scm:git:git@github.com:ak80/att.git</developerConnection>
         <url>git@github.com:ak80/att.git</url>
-        <tag>att-${version}</tag>
+        <tag>att-${project.version}</tag>
     </scm>
 
     <dependencies>
@@ -141,9 +140,8 @@
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
-                                <phase>verify</phase>
                                 <goals>
-                                    <goal>jar-no-fork</goal>
+                                    <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>
