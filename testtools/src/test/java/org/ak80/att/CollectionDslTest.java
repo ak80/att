@@ -109,7 +109,6 @@ public class CollectionDslTest {
     assertThat(set, containsInAnyOrder(array));
   }
 
-
   @Test
   public void listOf_with_count_and_builder_creates_list() {
     // Given
@@ -117,6 +116,18 @@ public class CollectionDslTest {
 
     // When
     List<Integer> list = $listOf(5, $Integer());
+
+    // Then
+    assertThat(list, contains(start + 1, start + 2, start + 3, start + 4, start + 5));
+  }
+
+  @Test
+  public void listOf_with_concrete_class_cast_to_object_list() {
+    // Given
+    int start = an($Integer());
+
+    // When
+    List<Object> list = $listOf(5, $Integer());
 
     // Then
     assertThat(list, contains(start + 1, start + 2, start + 3, start + 4, start + 5));
@@ -135,6 +146,18 @@ public class CollectionDslTest {
   }
 
   @Test
+  public void setOf_with_concrete_class_cast_to_object_set() {
+    // Given
+    int start = an($Integer());
+
+    // When
+    Set<Object> set = $setOf(5, $Integer());
+
+    // Then
+    assertThat(set, containsInAnyOrder(start + 1, start + 2, start + 3, start + 4, start + 5));
+  }
+
+  @Test
   public void listOfSupplied_creates_list_from_supplier() {
     // Given
     AtomicInteger integer = new AtomicInteger(0);
@@ -147,12 +170,36 @@ public class CollectionDslTest {
   }
 
   @Test
-  public void setOfSupplied_creates_lset_from_supplier() {
+  public void listOfSupplied_concrete_creates_list_for_object() {
+    // Given
+    AtomicInteger integer = new AtomicInteger(0);
+
+    // When
+    List<Object> list = listOfSupplied(5, () -> integer.getAndIncrement());
+
+    // Then
+    assertThat(list, contains(0, 1, 2, 3, 4));
+  }
+
+  @Test
+  public void setOfSupplied_creates_set_from_supplier() {
     // Given
     AtomicInteger integer = new AtomicInteger(0);
 
     // When
     Set<Integer> set = setOfSupplied(5, () -> integer.getAndIncrement());
+
+    // Then
+    assertThat(set, contains(0, 1, 2, 3, 4));
+  }
+
+  @Test
+  public void setOfSupplied_concrete_creates_set_for_object() {
+    // Given
+    AtomicInteger integer = new AtomicInteger(0);
+
+    // When
+    Set<Object> set = setOfSupplied(5, () -> integer.getAndIncrement());
 
     // Then
     assertThat(set, contains(0, 1, 2, 3, 4));

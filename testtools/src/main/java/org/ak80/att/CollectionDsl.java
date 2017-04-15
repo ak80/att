@@ -40,7 +40,7 @@ public class CollectionDsl {
     return new HashSet<>(listOf(array));
   }
 
-  public static <T> List<T> $listOf(int count, Builder<T> $builder) {
+  public static <T> List<T> $listOf(int count, Builder<? extends T> $builder) {
     List<T> list = new ArrayList<>();
     for (int i = 0; i < count; i++) {
       list.add(a($builder));
@@ -48,7 +48,7 @@ public class CollectionDsl {
     return list;
   }
 
-  public static <T> Set<T> $setOf(int count, Builder<T> $builder) {
+  public static <T> Set<T> $setOf(int count, Builder<? extends T> $builder) {
     Set<T> set = new HashSet<>();
     for (int i = 0; i < count; i++) {
       set.add(a($builder));
